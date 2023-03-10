@@ -6,19 +6,12 @@
 //
 
 struct NASAmain: Codable {
-    let result: [Result]
+    let url: String
+    let title: String
+    let copyright: String?
+    let explanation: String
     
-    
-    struct Result: Codable {
-        let copyright: String?
-        let date: Int
-        let explanation: String
-        let hdurl: String
-        let media_type: String
-        let service_version: String
-        let title: String?
-        let url: String
-    }
+
 }
 
 
