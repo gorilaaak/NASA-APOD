@@ -13,14 +13,17 @@ struct ContentView: View{
     
     var body: some View {
         NavigationView {
-            Text(detailModel.nasaDATA?.title ?? "")
-            Text(detailModel.nasaDATA?.explanation ?? "")
-            Text(detailModel.nasaDATA?.copyright ?? "")
-            Text(detailModel.nasaDATA?.date  ?? "")
-        }
-        navigationTitle("NASA APOD")
-        .onAppear {
-            detailModel.fetchData()
+            List {
+                Text(detailModel.nasaDATA?.title ?? "")
+                Text(detailModel.nasaDATA?.explanation ?? "")
+                Text(detailModel.nasaDATA?.copyright ?? "")
+                Text(detailModel.nasaDATA?.date  ?? "")
+            }
+            .navigationTitle("NASA APOD")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                detailModel.fetchData()
+            }
         }
     }
 }
