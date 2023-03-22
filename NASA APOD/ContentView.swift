@@ -7,36 +7,21 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Text")
-            .onAppear {
-                fetchData()
-            }
-    }
+struct ContentView: View{
+    @StateObject private var detailModel = viewModel()
     
-    func fetchData() {
-        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(APIkey.appID)&count=1"
-        let url = URL(string: urlString)!
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("Missing data!")
-                return
-            }
-            
-            if let json = try? JSONSerialization.jsonObject(with: data) {
-                print(json)
-            }
+    
+    var body: some View {
+        NavigationView {
+            Text(detailModel.nasaDATA?.title ?? "")
+            Text(detailModel.nasaDATA?.explanation ?? "")
+            Text(detailModel.nasaDATA?.copyright ?? "")
+            Text(detailModel.nasaDATA?.date  ?? "")
         }
-        
-        task.resume()
+        navigationTitle("NASA APOD")
+        .onAppear {
+            detailModel.fetchData()
+        }
     }
 }
 

@@ -5,17 +5,16 @@
 //  Created by Jakub Petrik on 06/03/2023.
 //
 
-struct NASAmain: Codable {
-    let url: String
+import SwiftUI
+
+struct nasaObject: Codable {
     let title: String
-    let copyright: String?
     let explanation: String
-    
-
+    let url: String
+    let copyright: String?
+    let date: String
+    let hdurl: String
 }
-
-
-
 
 
 
