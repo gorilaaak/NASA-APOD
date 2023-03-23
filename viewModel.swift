@@ -14,7 +14,7 @@ class viewModel: ObservableObject {
     func fetchData() {
         let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(APIkey.appID)"
         let url = URL(string: urlString)!
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             
             
             if let error = error {
