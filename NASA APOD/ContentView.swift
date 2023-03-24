@@ -10,22 +10,21 @@ import SwiftUI
 struct ContentView: View{
     @StateObject private var detailModel = viewModel()
     
-    
     var body: some View {
         NavigationView {
             List {
                 Text(detailModel.nasaDATA?.title ?? "")
-                Text(detailModel.nasaDATA?.explanation ?? "")
-                Text(detailModel.nasaDATA?.copyright ?? "")
-                Text(detailModel.nasaDATA?.date  ?? "")
-                AsyncImage(url: URL(string: "\(detailModel.nasaDATA?.hdurl ?? "")")) { image in
-                    image.resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
-                } placeholder: {
-                    Color.gray
-                        .frame(height: 300)
+                    AsyncImage(url: URL(string: "\(detailModel.nasaDATA?.hdurl ?? "")")) { image in
+                        image.resizable()
+                            .scaledToFit()
+                            .cornerRadius(10)
+                    } placeholder: {
+                        Color.gray
+                            .frame(height: 300)
                 }
+                Text(detailModel.nasaDATA?.explanation ?? "")
+                Text("Copyright: \(detailModel.nasaDATA?.copyright ?? "Nobody")")
+                Text("Date: \(detailModel.nasaDATA?.date ?? "")")
             }
             .navigationTitle("NASA APOD")
             .navigationBarTitleDisplayMode(.inline)
