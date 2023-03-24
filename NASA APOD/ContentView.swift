@@ -18,6 +18,14 @@ struct ContentView: View{
                 Text(detailModel.nasaDATA?.explanation ?? "")
                 Text(detailModel.nasaDATA?.copyright ?? "")
                 Text(detailModel.nasaDATA?.date  ?? "")
+                AsyncImage(url: URL(string: "\(detailModel.nasaDATA?.hdurl ?? "")")) { image in
+                    image.resizable()
+                        .scaledToFit()
+                        .cornerRadius(10)
+                } placeholder: {
+                    Color.gray
+                        .frame(height: 300)
+                }
             }
             .navigationTitle("NASA APOD")
             .navigationBarTitleDisplayMode(.inline)
