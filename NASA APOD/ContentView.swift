@@ -13,18 +13,6 @@ struct ContentView: View{
     var body: some View {
         NavigationView {
             List {
-                Text(detailModel.nasaDATA?.title ?? "")
-                    AsyncImage(url: URL(string: "\(detailModel.nasaDATA?.hdurl ?? "")")) { image in
-                        image.resizable()
-                            .scaledToFit()
-                            .cornerRadius(10)
-                    } placeholder: {
-                        Color.gray
-                            .frame(height: 300)
-                }
-                Text(detailModel.nasaDATA?.explanation ?? "")
-                Text("Copyright: \(detailModel.nasaDATA?.copyright ?? "Nobody")")
-                Text("Date: \(detailModel.nasaDATA?.date ?? "")")
             }
             .navigationTitle("NASA APOD")
             .navigationBarTitleDisplayMode(.inline)
@@ -40,3 +28,17 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+//Text(detailModel.nasaDATA?.title ?? "")
+//    AsyncImage(url: URL(string: "\(detailModel.nasaDATA?.hdurl ?? "")")) { image in
+//        image.resizable()
+//            .scaledToFit()
+//            .cornerRadius(10)
+//    } placeholder: {
+//        Color.gray
+//            .frame(height: 300)
+//}
+//Text(detailModel.nasaDATA?.explanation ?? "")
+//Text("Copyright: \(detailModel.nasaDATA?.copyright ?? "Nobody")")
+//Text("Date: \(detailModel.nasaDATA?.date ?? "")")
