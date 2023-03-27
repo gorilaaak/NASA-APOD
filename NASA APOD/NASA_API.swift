@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct nasaObject: Codable {
+struct nasaObject: Codable,Hashable {
     let title: String
     let explanation: String
     let url: String

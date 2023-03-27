@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 class viewModel: ObservableObject {
-    @Published var nasaDATA: nasaObject?
+    @Published var nasaDATA: [nasaObject] = []
     
     func fetchData() {
-        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(APIkey.appID)"
+        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(APIkey.appID)&count=1"
         let url = URL(string: urlString)!
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             
@@ -28,9 +28,9 @@ class viewModel: ObservableObject {
             }
             
             let decoder = JSONDecoder()
-            if let json = try? decoder.decode(nasaObject.self, from: data) {
+            if let nasaData = try? decoder.decode([nasaObject].self, from: data) {
                 DispatchQueue.main.async {
-                    self.nasaDATA = json
+                    self.nasaDATA = nasaData
                 }
             }
         }
