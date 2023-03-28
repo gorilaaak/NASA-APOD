@@ -19,6 +19,9 @@ struct ContentView: View{
                         image.resizable()
                             .scaledToFit()
                             .cornerRadius(10)
+                            .onTapGesture {
+                                detailModel.fetchData()
+                            }
                     } placeholder: {
                         Color.gray
                             .frame(height: 300)
