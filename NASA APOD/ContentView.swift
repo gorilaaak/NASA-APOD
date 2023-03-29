@@ -11,28 +11,37 @@ struct ContentView: View{
     @StateObject private var detailModel = viewModel()
     
     var body: some View {
-        NavigationView {
-            List {
+        ScrollView {
+            VStack(
+                alignment: .center,
+                spacing: 20
+            ) {
                 ForEach(detailModel.nasaDATA, id: \.self) {data in
+                    
                     Text(data.title)
+                        .font(.title)
+                        .bold()
+                        .padding(.top, 30)
                     AsyncImage(url: URL(string: "\(data.hdurl)")) { image in
                         image.resizable()
                             .scaledToFit()
                             .cornerRadius(10)
-                            .onTapGesture {
+                            .onTapGesture (count: 2, perform: {
                                 detailModel.fetchData()
-                            }
+                            })
+                        
                     } placeholder: {
                         Color.gray
                             .frame(height: 300)
                 }
                     Text(data.explanation)
+                    
                     Text("Copyright: \(data.copyright ?? "Nobody")")
+                    
                     Text("Caption date: \(data.date)")
                 }
+                
             }
-            .navigationTitle("NASA APOD")
-            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 detailModel.fetchData()
             }
