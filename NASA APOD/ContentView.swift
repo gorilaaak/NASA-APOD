@@ -22,10 +22,14 @@ struct ContentView: View{
                         .font(.title)
                         .bold()
                         .padding(.top, 30)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .multilineTextAlignment(.center)
+                    
                     AsyncImage(url: URL(string: "\(data.hdurl)")) { image in
                         image.resizable()
                             .scaledToFit()
                             .cornerRadius(10)
+                            .padding(.top, 20)
                             .onTapGesture (count: 2, perform: {
                                 detailModel.fetchData()
                             })
@@ -35,6 +39,8 @@ struct ContentView: View{
                             .frame(height: 300)
                 }
                     Text(data.explanation)
+                        .lineSpacing(5)
+                        .font(.callout)
                     
                     Text("Copyright: \(data.copyright ?? "Nobody")")
                     
