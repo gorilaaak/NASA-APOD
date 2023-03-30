@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  NASA APOD
-//
-//  Created by Jakub Petrik on 06/03/2023.
-//
 
 import SwiftUI
 
@@ -13,23 +7,21 @@ struct ContentView: View{
     var body: some View {
         ScrollView {
             VStack(
-                alignment: .center,
-                spacing: 20
+                alignment: .center
             ) {
                 ForEach(detailModel.nasaDATA, id: \.self) {data in
                     
                     Text(data.title)
                         .font(.title)
                         .bold()
-                        .padding(.top, 30)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top, 40)
                         .multilineTextAlignment(.center)
                     
                     AsyncImage(url: URL(string: "\(data.hdurl)")) { image in
                         image.resizable()
                             .scaledToFit()
                             .cornerRadius(10)
-                            .padding(.top, 20)
+                            .padding(10)
                             .onTapGesture (count: 2, perform: {
                                 detailModel.fetchData()
                             })
@@ -41,6 +33,7 @@ struct ContentView: View{
                     Text(data.explanation)
                         .lineSpacing(5)
                         .font(.callout)
+                        .padding(10)
                     
                     Text("Copyright: \(data.copyright ?? "Nobody")")
                     
